@@ -4,6 +4,7 @@ import com.rahul.ems.dto.EmployeePatchRequestDto;
 import com.rahul.ems.dto.EmployeeRequestDto;
 import com.rahul.ems.dto.EmployeeResponseDto;
 import com.rahul.ems.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class EmployeeController {
   }
 
   @PostMapping("/employees")
-  public ResponseEntity<?> createEmployee(@RequestBody EmployeeRequestDto requestDto) {
+  public ResponseEntity<?> createEmployee(@Valid @RequestBody EmployeeRequestDto requestDto) {
     EmployeeResponseDto responseDto = employeeService.createEmployee(requestDto);
     return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
   }
@@ -47,14 +48,14 @@ public class EmployeeController {
 
   @PutMapping("/employees/{id}")
   public ResponseEntity<?> updateEmployee(
-      @PathVariable Long id, @RequestBody EmployeeRequestDto requestDto) {
+      @PathVariable Long id, @Valid @RequestBody EmployeeRequestDto requestDto) {
     EmployeeResponseDto responseDto = employeeService.updateEmployee(id, requestDto);
     return new ResponseEntity<>(responseDto, HttpStatus.OK);
   }
 
   @PatchMapping("/employees/{id}")
   public ResponseEntity<?> partiallyUpdateEmployee(
-      @PathVariable Long id, @RequestBody EmployeePatchRequestDto patchRequestDto) {
+      @PathVariable Long id, @Valid @RequestBody EmployeePatchRequestDto patchRequestDto) {
     EmployeeResponseDto responseDto = employeeService.partiallyUpdateEmployee(id, patchRequestDto);
     return new ResponseEntity<>(responseDto, HttpStatus.OK);
   }
