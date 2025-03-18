@@ -43,6 +43,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     Employee dbEmployee = employeeRepository.save(newEmployee);
 
+//    System.out.println(dbEmployee.getFirstName() + "  firstname=============================");
+
     return employeeMapper.toDto(dbEmployee);
   }
 
