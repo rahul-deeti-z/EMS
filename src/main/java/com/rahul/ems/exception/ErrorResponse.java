@@ -1,22 +1,20 @@
 package com.rahul.ems.exception;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.LocalDateTime;
 
-@Setter
-@Getter
-@NoArgsConstructor
-public class ErrorResponse {
-  private int status;
-  private String message;
-  private LocalDateTime timestamp;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.Builder;
+import java.util.List;
 
-  public ErrorResponse(int status, String message) {
-    this.status = status;
-    this.message = message;
-    this.timestamp = LocalDateTime.now();
-  }
+@Getter
+@Setter
+@Builder
+@JsonInclude(JsonInclude.Include.NON_NULL) // Avoids null fields in JSON
+public class ErrorResponse {
+  private final int status;
+  private final String message;
+  private final LocalDateTime timestamp;
+  private final List<String> errors;
 }
