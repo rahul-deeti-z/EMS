@@ -1,5 +1,6 @@
 package com.rahul.ems.controller;
 
+import com.rahul.ems.api.EmployeeApi;
 import com.rahul.ems.dto.EmployeePatchRequestDto;
 import com.rahul.ems.dto.EmployeeRequestDto;
 import com.rahul.ems.dto.EmployeeResponseDto;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
-public class EmployeeController {
+public class EmployeeController implements EmployeeApi {
   private final EmployeeService employeeService;
 
   @Autowired
