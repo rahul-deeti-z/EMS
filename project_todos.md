@@ -13,3 +13,4 @@ Let's have a final list
 11. Aspect Oriented Programming (done to some extent, used in exception logging)
 12. Security code
 13. java-code-formatter setup(done)
+14. Test coverage generation using JaCoCo
