@@ -24,38 +24,38 @@ public class EmployeeController implements EmployeeApi {
   }
 
   @GetMapping("/employees/{id}")
-  public ResponseEntity<?> getEmployee(@PathVariable Long id) {
+  public ResponseEntity<EmployeeResponseDto> getEmployee(@PathVariable Long id) {
     EmployeeResponseDto responseDto = employeeService.getEmployeeById(id);
     return new ResponseEntity<>(responseDto, HttpStatus.OK);
   }
 
   @GetMapping("/employees")
-  public ResponseEntity<?> getAllEmployees() {
+  public ResponseEntity<List<EmployeeResponseDto>> getAllEmployees() {
     List<EmployeeResponseDto> responseDtos = employeeService.getAllEmployees();
     return new ResponseEntity<>(responseDtos, HttpStatus.OK);
   }
 
   @PostMapping("/employees")
-  public ResponseEntity<?> createEmployee(@Valid @RequestBody EmployeeRequestDto requestDto) {
+  public ResponseEntity<EmployeeResponseDto> createEmployee(@Valid @RequestBody EmployeeRequestDto requestDto) {
     EmployeeResponseDto responseDto = employeeService.createEmployee(requestDto);
     return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
   }
 
   @DeleteMapping("/employees/{id}")
-  public ResponseEntity<?> deleteEmployee(@PathVariable(name = "id") Long empId) {
+  public ResponseEntity<Void> deleteEmployee(@PathVariable(name = "id") Long empId) {
     employeeService.deleteEmployee(empId);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 
   @PutMapping("/employees/{id}")
-  public ResponseEntity<?> updateEmployee(
+  public ResponseEntity<EmployeeResponseDto> updateEmployee(
       @PathVariable Long id, @Valid @RequestBody EmployeeRequestDto requestDto) {
     EmployeeResponseDto responseDto = employeeService.updateEmployee(id, requestDto);
     return new ResponseEntity<>(responseDto, HttpStatus.OK);
   }
 
   @PatchMapping("/employees/{id}")
-  public ResponseEntity<?> partiallyUpdateEmployee(
+  public ResponseEntity<EmployeeResponseDto> partiallyUpdateEmployee(
       @PathVariable Long id, @Valid @RequestBody EmployeePatchRequestDto patchRequestDto) {
     EmployeeResponseDto responseDto = employeeService.partiallyUpdateEmployee(id, patchRequestDto);
     return new ResponseEntity<>(responseDto, HttpStatus.OK);

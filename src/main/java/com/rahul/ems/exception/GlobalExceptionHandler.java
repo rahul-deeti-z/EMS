@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler extends RuntimeException {
   @ExceptionHandler
   public ResponseEntity<ErrorResponse> handleException(Exception exception) {
-    System.out.println(exception.getClass());
     ErrorResponse errorResponse =
         ErrorResponse.builder()
             .status(500)
