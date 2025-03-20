@@ -33,10 +33,10 @@ public class DtoExceptionHandler {
                 .errors(errors)
                 .build();
 
-        return ResponseEntity.badRequest().body(errorResponse);
-    }
+    return ResponseEntity.badRequest().body(errorResponse);
+  }
 
-    private String formatErrorMessage(String dtoName, FieldError fieldError) {
-        return dtoName + "." + fieldError.getField() + ": " + fieldError.getDefaultMessage();
-    }
+  private String formatErrorMessage(String dtoName, FieldError fieldError) {
+    return dtoName + "." + fieldError.getField() + ": " + fieldError.getDefaultMessage();
+  }
 }

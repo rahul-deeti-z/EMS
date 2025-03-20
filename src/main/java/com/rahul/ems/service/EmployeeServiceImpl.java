@@ -27,11 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
   public EmployeeResponseDto getEmployeeById(Long id) {
     log.info("Fetching employee details for ID: {}", id);
     long startTime = System.currentTimeMillis();
-    Employee employee =
-        employeeRepository
-            .findById(id)
-            .orElseThrow(
-                () -> new EmployeeNotFoundException("Employee with id: " + id + " not found"));
+    Employee employee = getEmployeeFromDb(id);
     long endTime = System.currentTimeMillis();
     log.info("Successfully fetched employee ID={} in {}ms", id, (endTime - startTime));
     return employeeMapper.toDto(employee);
@@ -54,11 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   @Override
   public EmployeeResponseDto updateEmployee(Long id, EmployeeRequestDto requestDto) {
-    Employee employee =
-        employeeRepository
-            .findById(id)
-            .orElseThrow(
-                () -> new EmployeeNotFoundException("Employee with id: " + id + " not found"));
+    Employee employee = getEmployeeFromDb(id);
     employeeMapper.updateEmployeeFromDto(requestDto, employee);
     Employee updatedEmployee = employeeRepository.save(employee);
 
@@ -68,11 +60,7 @@ public class EmployeeServiceImpl implements EmployeeService {
   @Override
   public EmployeeResponseDto partiallyUpdateEmployee(
       Long id, EmployeePatchRequestDto patchRequestDto) {
-    Employee employee =
-        employeeRepository
-            .findById(id)
-            .orElseThrow(
-                () -> new EmployeeNotFoundException("Employee with id: " + id + " not found"));
+    Employee employee = getEmployeeFromDb(id);
     employeeMapper.partiallyUpdateEmployeeFromDto(patchRequestDto, employee);
     Employee updatedEmployee = employeeRepository.save(employee);
     return employeeMapper.toDto(updatedEmployee);
@@ -80,11 +68,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   @Override
   public void deleteEmployee(Long id) {
-    Employee employee =
-        employeeRepository
-            .findById(id)
-            .orElseThrow(
-                () -> new EmployeeNotFoundException("Employee with id: " + id + " not found"));
+    Employee employee = getEmployeeFromDb(id);
+
     employeeRepository.delete(employee);
+  }
+
+  private Employee getEmployeeFromDb(Long id) {
+    return employeeRepository
+        .findById(id)
+        .orElseThrow(() -> new EmployeeNotFoundException("Employee with id: " + id + " not found"));
   }
 }

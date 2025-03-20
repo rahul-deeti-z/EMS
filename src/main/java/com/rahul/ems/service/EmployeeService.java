@@ -3,7 +3,6 @@ package com.rahul.ems.service;
 import com.rahul.ems.dto.EmployeePatchRequestDto;
 import com.rahul.ems.dto.EmployeeRequestDto;
 import com.rahul.ems.dto.EmployeeResponseDto;
-import com.rahul.ems.entity.Employee;
 
 import java.util.List;
 
