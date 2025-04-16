@@ -1,4 +1,4 @@
-package com.rahul.ems.api;
+package com.rahul.ems.swagger;
 
 import com.rahul.ems.dto.EmployeePatchRequestDto;
 import com.rahul.ems.dto.EmployeeRequestDto;

@@ -7,6 +7,7 @@ import com.rahul.ems.entity.Employee;
 import com.rahul.ems.exception.EmployeeNotFoundException;
 import com.rahul.ems.mapper.EmployeeMapper;
 import com.rahul.ems.repository.EmployeeRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
